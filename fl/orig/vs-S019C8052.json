@@ -1,5 +1,4 @@
 {
-{
 name: "Republican",
 series: [
  {
@@ -817,5 +816,4 @@ series: [
    "value": "100"
  }
 ]
-}
 }
