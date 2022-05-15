@@ -1,13 +1,12 @@
 import sys
 import random
-import json
 
 # Seats-votes curve generator
 # Done using uniform partisan swing
 
-inputFile = json.load(open(sys.argv[1]))
+inputFile = open(sys.argv[1],"r")
 outputFile = open(sys.argv[2] + ".csv","w")
-#csv = inputFile.read().split("\n")
+csv = inputFile.read().split("\n")
 
 votingByDistrict = []
 seatsVotesRep = []
@@ -20,11 +19,11 @@ totalDemVotes = 0
 totalRepVotes = 0
 
 # Read all district data
-for district, values in inputFile.items():
-    if True:
-        #line = lineStr.split(",")
-        rep = values["r"]
-        dem = values["d"]
+for lineStr in csv:
+    if len(lineStr) > 0:
+        line = lineStr.split(",")
+        rep = int(line[3])
+        dem = int(line[2])
         total = rep + dem
 
         totalVotes += total
@@ -144,5 +143,5 @@ outputFile.write("votes,seatsR,seatsD\n")
 for i in range(0, len(seatsVotesDem)):
     outputFile.write(str(100 * seatsVotesRep[i]["votes"]) + "," + str(100 * seatsVotesRep[i]["seats"]) + "," + str(100 * seatsVotesDem[i]["seats"]) + "\n")
 
-#inputFile.close()
+inputFile.close()
 outputFile.close()
